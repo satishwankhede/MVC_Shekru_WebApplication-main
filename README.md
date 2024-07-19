@@ -1,0 +1,1 @@
+This repository contains a CRUD (Create, Read, Update, Delete) application developed using ASP.NET Core MVC. The application manages employee records, including creating, reading, updating, and deleting employee information.

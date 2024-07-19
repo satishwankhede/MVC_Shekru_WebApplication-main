@@ -1,0 +1,98 @@
+﻿@model IEnumerable<MVC_Shekru_WebApplication.Models.Employee>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+        .table th,
+        .table td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f0d690fa;
+            color: black;
+        }
+
+        .table td {
+            background-color: #f2f2f2;
+        }
+
+        .table a {
+            color: #f0d690fa;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+            .table a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<h1>Employee List</h1>
+
+<div class="text-end">
+    <a asp-action="Create" class="btn btn-outline-success">Create New</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phonenumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DesignationIdRefNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeIdRefNavigation)
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Firstname)</td>
+                <td>@Html.DisplayFor(modelItem => item.Lastname)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailAddress)</td>
+                <td>@Html.DisplayFor(modelItem => item.Phonenumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.DesignationIdRefNavigation.DesignationName)</td>
+                <td>@Html.DisplayFor(modelItem => item.GradeIdRefNavigation.GradeName)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-primary"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="text-warning"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger"
+                       onclick="return confirm('Are you sure you want to delete this item?');"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedheader/3.1.6/js/dataTables.fixedHeader.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-VTP42ZwHb0OY4HE9SnYjXlbEXO4tfS0N4lMyD3blpA8zW+VTm5chc0ySCuR5hKGacIhZ3otFFQ4jLhW5CQ5TQA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
